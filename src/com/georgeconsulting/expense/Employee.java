@@ -2,8 +2,6 @@ package com.georgeconsulting.expense;
 
 import java.sql.*;
 
-import java.util.Scanner;
-
 public class Employee {
 	//Employee information fields
 	int empID;
@@ -11,6 +9,7 @@ public class Employee {
 	String lastName;
 	int supervisorID;
 	String email;
+	int privLevel;
 	
 	//SQL select statement
 	String queryStmt = "SELECT * FROM Employee WHERE empID = ";
@@ -27,11 +26,14 @@ public class Employee {
 			lastName = getEmp.rs.getString("lastName");
 			supervisorID = getEmp.rs.getInt("supervisorID");
 			email = getEmp.rs.getString("email");
+			privLevel = getEmp.rs.getInt("privilege");
 			
 			System.out.println("Employee: " + firstName + " " + lastName);
 			System.out.println("ID Number: " + empID);
 			System.out.println("Supervisor's ID: " + supervisorID);
 			System.out.println("Email: " + email);
+			System.out.println("Access Level: " + privLevel);
+			System.out.println("--------------------------------------------");
 		}
 	}
 	

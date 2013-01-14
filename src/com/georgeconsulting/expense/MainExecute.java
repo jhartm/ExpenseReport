@@ -14,8 +14,10 @@ public class MainExecute {
 		System.out.println("-------------------------------");
 		
 		//Pulls employee (current user) information from DB
-		@SuppressWarnings("unused")
 		Employee currentUser = new Employee(user.storedID, conn);
+		
+		@SuppressWarnings("unused")
+		Menu choice = new Menu(currentUser.privLevel);
 		
 		//Closes the connection when done
 		conn.conn.close();
