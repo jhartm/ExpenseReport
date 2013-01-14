@@ -41,7 +41,7 @@ public class Login {
 			}
 		}
 		
-		readInput.close();
+		//readInput.close();
 	}
 	
 	public static void main(String[] args) {

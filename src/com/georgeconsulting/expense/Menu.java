@@ -4,65 +4,58 @@ import java.util.Scanner;
 
 public class Menu {
 	int menuChoice;
+	String[] basic = new String[11];
 	
-	public void basicChoices() {
-		System.out.println("User level choices:");
-		System.out.println("0  - Done");
-		System.out.println("1  - Create new expense request");
-		System.out.println("2  - Edit existing expense request");
-		System.out.println("3  - Delete existing expense request");
-		System.out.println("4  - View pending expense requests");
-		System.out.println("5  - View approved expense requests");
-		System.out.println("6  - View completed expense reports");
+	public void setChoice() {
+		basic[0] = "Done";
+		basic[1] = "Create";
+		basic[2] = "Edit";
+		basic[3] = "Delete";
+		basic[4] = "View pending";
+		basic[5] = "View approved";
+		basic[6] = "View completed";
+		basic[7] = "View all pending";
+		basic[8] = "Approve/reject pending";
+		basic[9] = "View all approved";
+		basic[10] = "View all completed";
 	}
 	
-	public void managerChoices() {
-		System.out.println("--------------------------------------");
-		System.out.println("Manager level choices:");
-		System.out.println("7  - View pending requests awaiting manager approval");
-		System.out.println("8  - Approve/reject a pending expense request");
-		System.out.println("9  - View all approved expense request");
-		System.out.println("10 - View all completed expense reports");
-	}
-	
-	public Menu(int privLevel) {
-		int menuChoice;
-//		Boolean valid = false;
+	public int getChoice(int privLevel) {
+		Boolean valid = false;
 		
+		this.setChoice();
+		
+		System.out.println("Basic user level options:");
 		if(privLevel == 1) {
-			this.basicChoices();
+			for(int i = 0; i < 7; i++) {
+				System.out.println(i + "  - " + basic[i]);
+			}
 		}
 		else if(privLevel > 1) {
-			this.basicChoices();
-			this.managerChoices();
+			for(int i = 0; i < 11; i++) {
+				if(i == 7) {
+					System.out.println("Manager level options:");
+				}
+				System.out.println(i + "  - " + basic[i]);
+			}
 		}
 
 		Scanner readInput = new Scanner(System.in);
-		menuChoice = readInput.nextInt();
-		System.out.println(menuChoice);
-
-
-		
-		
-		//menuChoice = Integer.parseInt(readInput.nextLine());
+						
+		while(valid == false) {
+			System.out.println("Enter choice (#): ");
+			menuChoice = readInput.nextInt();
+			
+			if(privLevel == 1 && (menuChoice >= 0 && menuChoice <= 6)) {
+				valid = true;
+			}
+			else if(privLevel > 1 && (menuChoice >= 0 && menuChoice <= 10)) {
+				valid = true;
+			}
+		}
 				
-//		while(valid == false) {
-//			System.out.println("Enter choice (#): ");
-//			//menuChoice = Integer.parseInt(readInput.nextLine());
-//			System.out.println("TEST");
-//			
-//			if(privLevel == 1 && (menuChoice >= 0 && menuChoice <= 6)) {
-//				valid = true;
-//			}
-//			else if(privLevel > 1 && (menuChoice >= 0 && menuChoice <= 10)) {
-//				valid = true;
-//			}
-//		}
-		
-		//System.out.println(menuChoice);
+		return menuChoice;
 	}
 
-	public static void main(String[] args) {
-		
-	}
+	
 }
