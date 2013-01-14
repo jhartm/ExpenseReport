@@ -1,50 +1,24 @@
 package com.georgeconsulting.expense;
 
 import java.sql.*;
-import java.util.Scanner;
 
 public class MainExecute {
 
 	public static void main(String[] args) throws SQLException {
-		String inputUsername;
-		String inputPassword;
-		String storedPass = null;
-		int numID = 0;
-		
+		//Create new DB connection
 		DBConnect conn = new DBConnect();
 		
-		System.out.println("Enter username: ");
-		Scanner readInput = new Scanner(System.in);
-		inputUsername = readInput.nextLine();
-		
-		FetchQuery getLogin = new FetchQuery(conn.conn, "SELECT * FROM Login WHERE username = '"+inputUsername+"'");
-		
-		System.out.println("Enter password: ");
-		inputPassword = readInput.nextLine();
-		
-		while(getLogin.rs.next()) {
-			storedPass = getLogin.rs.getString("password");
-		
-			if(inputPassword.equals(storedPass)) {
-				System.out.println("***Access Granted***");
-				numID = getLogin.rs.getInt("empID");
-			}
-			else {
-				System.out.println("***Access denied - Invalid username/password***");
-				
-				System.exit(0);
-			}
-		}
-		
-		readInput.close();
+		//Login process
+		Login user = new Login(conn);
 				
 		System.out.println("-------------------------------");
 		
+		//Pulls employee (current user) information from DB
 		@SuppressWarnings("unused")
-		Employee currentUser = new Employee(numID, conn);
+		Employee currentUser = new Employee(user.storedID, conn);
 		
+		//Closes the connection when done
 		conn.conn.close();
-
 	}
 
 }
