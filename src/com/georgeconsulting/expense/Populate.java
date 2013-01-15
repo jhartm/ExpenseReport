@@ -5,8 +5,9 @@ import java.sql.*;
 public class Populate {
 	Statement stmt = null;
 	
-	public Populate(DBConnect conn, String queryStmt) throws SQLException {
-		stmt = conn.conn.createStatement();
+	public static void newEntry(Connection conn, String queryStmt) throws SQLException {
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(queryStmt);
 		stmt.executeUpdate(queryStmt);
 	}
 }

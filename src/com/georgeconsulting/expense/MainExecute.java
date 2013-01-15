@@ -19,7 +19,8 @@ public class MainExecute {
 		Menu choice = new Menu();
 		System.out.println(choice.getChoice(currentUser.privLevel));
 		
-		
+		@SuppressWarnings("unused")
+		TravelExpenseReport newReport = new TravelExpenseReport(conn.conn, currentUser);
 		
 		//Closes the connection when done
 		conn.conn.close();
