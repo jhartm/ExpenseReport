@@ -19,10 +19,7 @@ public class MainExecute {
 		Menu choice = new Menu();
 		System.out.println(choice.getChoice(currentUser.privLevel));
 		
-		System.out.println("TEST: clearing employee");
-		currentUser = null;
 		
-		System.out.println(currentUser.firstName);
 		
 		//Closes the connection when done
 		conn.conn.close();

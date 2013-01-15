@@ -26,7 +26,7 @@ public class Employee {
 			lastName = getEmp.rs.getString("lastName");
 			supervisorID = getEmp.rs.getInt("supervisorID");
 			email = getEmp.rs.getString("email");
-			privLevel = getEmp.rs.getInt("privilege");
+			privLevel = getEmp.rs.getInt("privLevel");
 			
 			System.out.println("Employee: " + firstName + " " + lastName);
 			System.out.println("ID Number: " + empID);

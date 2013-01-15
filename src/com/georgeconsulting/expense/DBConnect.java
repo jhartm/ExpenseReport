@@ -8,9 +8,9 @@ public class DBConnect {
 	Connection conn;
 	
 	//Database access fields
-	String url = "jdbc:mysql://localhost:8889/expenseReport";
+	String url = "jdbc:mysql://192.168.1.106:3306/expenseReport";
 	String password = "root";
-	String user = "root";
+	String user = "jhartmann";
 	
 	//Constructor
 	public DBConnect() throws SQLException {
