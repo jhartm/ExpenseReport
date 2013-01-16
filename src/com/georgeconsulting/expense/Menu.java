@@ -20,7 +20,7 @@ public class Menu {
 		basic[10] = "View all completed";
 	}
 	
-	public int getChoice(int privLevel) {
+	public void getChoice(int privLevel) {
 		Boolean valid = false;
 		
 		this.setChoice();
@@ -54,7 +54,7 @@ public class Menu {
 			}
 		}
 				
-		return menuChoice;
+		//return menuChoice;
 	}
 
 	

@@ -26,24 +26,19 @@ public class TravelExpenseReport {
 	Date completionDate = null;
 	int requestStatus = 1;
 	int reportStatus = 1;
-	
-//	String queryStmt = "INSERT INTO " + "TravelExpenseReport " + 
-//						"(empID, contractID, estAir, estGnd, estLodge, estPerdiem," +
-//						"estOther, estTotal, requestDate, statusReport)" +
-//						"VALUES(" + empID + "," + contractID + "," + estAir + "," + estGnd + "," +
-//						estLodge + "," + estPerdiem + "," + estOther + "," + estTotal +
-//						", '2013-01-15'," + reportStatus + ")";
 
-	public TravelExpenseReport(Connection conn, Employee user) throws SQLException {
+	public void newEntry(Connection conn, Employee user) throws SQLException {
 		empID = user.empID;
 		
 		Date todaysDate = new Date();
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		requestDate = ft.format(todaysDate);
 		
-		int done = 0;
+		Boolean done = false;
 		
-		while(done == 0){
+		System.out.println("-------------------------------------------");
+		
+		while(done == false){
 			@SuppressWarnings("unused")
 			Contract list = new Contract(conn);
 		
@@ -68,10 +63,11 @@ public class TravelExpenseReport {
 			
 			System.out.println("Is everything correct? (Y/N)");
 			if(readInput.nextLine().equalsIgnoreCase("Y")) {
-				done = 1;
+				done = true;
 			}
 		}
 		
+		System.out.println("-------------------------------------------");
 		String queryStmt = "INSERT INTO " + "TravelExpenseReport " + 
 				"(empID, contractID, estAir, estGnd, estLodge, estPerdiem," +
 				"estOther, estTotal, requestDate, statusReport)" +
@@ -79,5 +75,9 @@ public class TravelExpenseReport {
 				estLodge + "," + estPerdiem + "," + estOther + "," + estTotal +
 				", '" + requestDate + "'," + reportStatus + ")";
 		Populate.newEntry(conn, queryStmt);
+	}
+	
+	public void viewEntryL1() {
+		
 	}
 }

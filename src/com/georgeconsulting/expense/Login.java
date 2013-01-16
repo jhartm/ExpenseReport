@@ -20,7 +20,7 @@ public class Login {
 		inputUsername = readInput.nextLine();
 		
 		//Looks up in DB and pulls login information
-		FetchQuery getLogin = new FetchQuery(conn.conn, queryStmt+inputUsername+"'");
+		FetchQuery getLogin = new FetchQuery(conn.conn, queryStmt+inputUsername + "'");
 		
 		//Asks for password
 		System.out.println("Enter password: ");

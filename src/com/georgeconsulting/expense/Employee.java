@@ -33,7 +33,7 @@ public class Employee {
 			System.out.println("Supervisor's ID: " + supervisorID);
 			System.out.println("Email: " + email);
 			System.out.println("Access Level: " + privLevel);
-			System.out.println("--------------------------------------------");
+			System.out.println("-------------------------------------------");
 		}
 	}
 	
