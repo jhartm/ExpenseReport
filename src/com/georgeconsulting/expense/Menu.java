@@ -3,7 +3,6 @@ package com.georgeconsulting.expense;
 import java.util.Scanner;
 
 public class Menu {
-//	private static final int Integer.parseInt(menuChoice) = 0;
 	String menuChoice;
 	String[] basic = new String[12];
 	String logout;
@@ -56,31 +55,23 @@ public class Menu {
 			
 			if(!menuChoice.equalsIgnoreCase("L")){
 			
-			int choice = Integer.parseInt(menuChoice); 
-			
-			if(privLevel == 1 && (choice >= 0 && choice <= 6)) {
-				valid = true;
-			}
-			else if(privLevel > 1 && (choice >= 0 && choice <= 10)) {
-				valid = true;
-			}
+				int choice = Integer.parseInt(menuChoice); 
+
+				if(privLevel == 1 && ((choice >= 0) && (choice <= 6))) {
+					valid = true;
+				}
+				
+				if(privLevel > 1 && ((choice >= 0) && (choice <= 10))) {
+					valid = true;
+				}
 			}
 			else {
 				
 				System.exit(0);
 			}
 				
-			}
+		}
 				
 		//return menuChoice;
-	}
-
-
-
-//	private int IntegerParseInt(String menuChoice2) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-
-	
+	}	
 }

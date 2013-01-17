@@ -14,15 +14,12 @@ public class Login {
 	String queryStmt = "SELECT * FROM Login WHERE username = '";
 	
 	public Login (DBConnect conn) throws SQLException, NoSuchAlgorithmException{
-		String storedPassword = null;
+//		String storedPassword = null;
 		
 		//Asks for username
 		System.out.println("Enter username: ");
 		Scanner readInput = new Scanner(System.in);
 		inputUsername = readInput.nextLine();
-		
-		//Looks up in DB and pulls login information
-		FetchQuery getLogin = new FetchQuery(conn.conn, queryStmt+inputUsername + "'");
 		
 		//Asks for password
 		System.out.println("Enter password: ");
@@ -32,18 +29,20 @@ public class Login {
 		mdEnc.update(inputPassword.getBytes(), 0, inputPassword.length());
 		String encInputPassword = new BigInteger(1, mdEnc.digest()).toString(16);
 		
-		//Checks password
-		while(getLogin.rs.next()) {
-			storedPassword = getLogin.rs.getString("password");
+		//Looks up in DB and pulls login information
+		FetchQuery getLogin = new FetchQuery(conn.conn, queryStmt+inputUsername + "'");
 		
-			if(encInputPassword.equals(storedPassword)) {
-				System.out.println("***Access Granted***");
-				storedID = getLogin.rs.getInt("empID");
+		if(!getLogin.rs.next()) {
+			System.out.println("*** WARNING: invalid username ***");
+			System.exit(0);
+		}
+		else {
+			if(!encInputPassword.equals(getLogin.rs.getString("password"))) {
+				System.out.println("*** WARNING: password does not match username ***");
+				System.exit(0);
 			}
 			else {
-				System.out.println("***Access denied - Invalid username/password***");
-				
-				System.exit(0);
+				storedID = getLogin.rs.getInt("empID");
 			}
 		}
 		
