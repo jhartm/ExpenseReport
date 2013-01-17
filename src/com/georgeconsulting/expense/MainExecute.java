@@ -1,10 +1,11 @@
 package com.georgeconsulting.expense;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class MainExecute {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, NoSuchAlgorithmException {
 		//Create new DB connection
 		DBConnect conn = new DBConnect();
 		

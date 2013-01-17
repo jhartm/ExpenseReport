@@ -2,6 +2,8 @@ package com.georgeconsulting.expense;
 
 import java.sql.*;
 import java.util.Scanner;
+import java.math.*;
+import java.security.*;
 
 public class Login {
 
@@ -11,7 +13,7 @@ public class Login {
 	
 	String queryStmt = "SELECT * FROM Login WHERE username = '";
 	
-	public Login (DBConnect conn) throws SQLException {
+	public Login (DBConnect conn) throws SQLException, NoSuchAlgorithmException{
 		String storedPassword = null;
 		
 		//Asks for username
@@ -26,11 +28,15 @@ public class Login {
 		System.out.println("Enter password: ");
 		inputPassword = readInput.nextLine();
 		
+		MessageDigest mdEnc = MessageDigest.getInstance("MD5");
+		mdEnc.update(inputPassword.getBytes(), 0, inputPassword.length());
+		String encInputPassword = new BigInteger(1, mdEnc.digest()).toString(16);
+		
 		//Checks password
 		while(getLogin.rs.next()) {
 			storedPassword = getLogin.rs.getString("password");
 		
-			if(inputPassword.equals(storedPassword)) {
+			if(encInputPassword.equals(storedPassword)) {
 				System.out.println("***Access Granted***");
 				storedID = getLogin.rs.getInt("empID");
 			}
