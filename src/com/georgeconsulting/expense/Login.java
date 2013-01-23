@@ -32,11 +32,13 @@ public class Login {
 		//Looks up in DB and pulls login information
 		FetchQuery getLogin = new FetchQuery(conn.conn, queryStmt+inputUsername + "'");
 		
+		//Checks for valid username
 		if(!getLogin.rs.next()) {
 			System.out.println("*** WARNING: invalid username ***");
 			System.exit(0);
 		}
 		else {
+			//Checks if password matches stored password for valid username
 			if(!encInputPassword.equals(getLogin.rs.getString("password"))) {
 				System.out.println("*** WARNING: password does not match username ***");
 				System.exit(0);
